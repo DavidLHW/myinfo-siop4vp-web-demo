@@ -36,8 +36,11 @@ import { DIDResolverPlugin } from "@veramo/did-resolver";
 import { KeyManager } from "@veramo/key-manager";
 import { KeyManagementSystem, SecretBox } from "@veramo/kms-local";
 import { Resolver } from "did-resolver";
-import { getDbConnection } from "./database";
-import { DB_CONNECTION_NAME, DB_ENCRYPTION_KEY } from "./database";
+import {
+  getDbConnection,
+  DB_CONNECTION_NAME,
+  DB_ENCRYPTION_KEY,
+} from "./database";
 
 export const DIF_UNIRESOLVER_RESOLVE_URL =
   "https://dev.uniresolver.io/1.0/identifiers";
