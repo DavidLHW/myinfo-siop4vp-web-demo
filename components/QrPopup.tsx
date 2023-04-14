@@ -3,12 +3,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import CloseIcon from "@/components/svg/Cross";
 import QRCode from "react-qr-code";
-import { rp } from "@/lib/rp";
-import {
-  AuthorizationRequest,
-  VerificationMode,
-  InternalVerification,
-} from "@sphereon/did-auth-siop";
+import Loading from "./svg/Loading";
 
 const Mask = styled.div`
   position: fixed;
@@ -30,12 +25,22 @@ const Popup = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  min-width: 300px;
+  min-height: 300px;
 `;
 
 const PopupHeader = styled.div`
   display: flex;
   justify-content: right;
   align-items: center;
+`;
+
+// elemenets in container should be centered and take up the whole space
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
 `;
 
 export default ({ toggle }: { toggle: () => void }) => {
@@ -54,7 +59,13 @@ export default ({ toggle }: { toggle: () => void }) => {
         <PopupHeader>
           <CloseIcon onClick={toggle} />
         </PopupHeader>
-        {encodedUri && <QRCode value={JSON.stringify(encodedUri)} />}
+        <Container>
+          {encodedUri ? (
+            <QRCode value={JSON.stringify(encodedUri)} />
+          ) : (
+            <Loading />
+          )}
+        </Container>
       </Popup>
     </Mask>
   );
